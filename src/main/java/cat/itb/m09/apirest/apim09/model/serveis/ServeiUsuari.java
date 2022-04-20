@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ServeiUsuari {
@@ -17,7 +19,13 @@ public class ServeiUsuari {
         return repositoriUsuari.findByUsername(username).orElse(null);
     }
 
-//    public Usuari addUser(Usuari usuari) {
-//
-//    }
+    public Usuari addUser(Usuari usuari) {
+        usuari.setPasswd(xifrat.encode(usuari.getPassword()));
+        repositoriUsuari.save(usuari);
+        return usuari;
+    }
+
+    public List<Usuari> llistarUsuaris(){
+        return repositoriUsuari.findAll();
+    }
 }
