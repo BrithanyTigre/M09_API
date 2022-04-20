@@ -38,7 +38,7 @@ public class Usuari implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return passwd;
     }
 
     @Override
