@@ -20,7 +20,7 @@ public class ServeiUsuari {
     }
 
     public Usuari addUser(Usuari usuari) {
-        usuari.setPasswd(xifrat.encode(usuari.getPassword()));
+        usuari.setPassword(xifrat.encode(usuari.getPassword()));
         repositoriUsuari.save(usuari);
         return usuari;
     }

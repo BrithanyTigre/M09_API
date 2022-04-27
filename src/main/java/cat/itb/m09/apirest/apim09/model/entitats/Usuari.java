@@ -24,7 +24,7 @@ public class Usuari implements UserDetails {
     private Long id;
     @Column(unique = true)
     private String username;
-    private String passwd;
+    private String password; //	$2a$10$Lt2qEOhIKWpUj5fSJcrhueZiK/N54G7NEJlI5bMr9p15e4f44PhDq
     private String avatar;
     private String rol = "USER";
 
@@ -34,11 +34,6 @@ public class Usuari implements UserDetails {
         roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 
         return roles;
-    }
-
-    @Override
-    public String getPassword() {
-        return passwd;
     }
 
     @Override
