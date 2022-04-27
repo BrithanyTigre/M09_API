@@ -23,9 +23,9 @@ public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
 
 //    Per fer proves al principi, per poder fer post i put d'usuaris sense seguretat
 //    @Override
-//    public void configure(WebSecurity web) {
-//        web.ignoring().anyRequest();
-//    }
+    public void configure(WebSecurity web) {
+        web.ignoring().anyRequest();
+    }
 
 
 
