@@ -2,9 +2,12 @@ package cat.itb.m09.apirest.apim09.seguretat;
 
 import cat.itb.m09.apirest.apim09.model.serveis.MyUserDetailService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
 
@@ -23,9 +27,9 @@ public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
 
 //    Per fer proves al principi, per poder fer post i put d'usuaris sense seguretat
 //    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().anyRequest();
-    }
+//    public void configure(WebSecurity web) {
+//        web.ignoring().anyRequest();
+//    }
 
 
 
@@ -63,4 +67,11 @@ public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 
+    //JWT
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 }

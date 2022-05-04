@@ -1,5 +1,6 @@
 package cat.itb.m09.apirest.apim09.model.entitats;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,7 @@ import java.util.Set;
 @Entity
 @Data
 @RequiredArgsConstructor
+@JsonIgnoreProperties
 public class Usuari implements UserDetails {
 
     @Id

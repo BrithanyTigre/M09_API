@@ -15,6 +15,10 @@ public class ServeiUsuari {
     private final RepositoriUsuari repositoriUsuari;
     private final PasswordEncoder xifrat;
 
+    public Usuari consultarPerId(Long id){
+        return repositoriUsuari.findById(id).orElse(null);
+    }
+
     public Usuari consultarPerUsername(String username) {
         return repositoriUsuari.findByUsername(username).orElse(null);
     }

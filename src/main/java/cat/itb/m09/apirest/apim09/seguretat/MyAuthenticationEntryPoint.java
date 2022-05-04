@@ -3,6 +3,7 @@ package cat.itb.m09.apirest.apim09.seguretat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +15,10 @@ import java.io.PrintWriter;
 
 @Component
 @RequiredArgsConstructor
-public class MyAuthenticationEntryPoint extends BasicAuthenticationEntryPoint {
+public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-    @Override
+    // Basic auth
+    /*@Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
         response.addHeader("WWW-Authenticate", "Basic realm=\\" + getRealmName() + "\\");
         response.setContentType("application/json");
@@ -24,10 +26,18 @@ public class MyAuthenticationEntryPoint extends BasicAuthenticationEntryPoint {
         PrintWriter writer = response.getWriter();
         writer.println("Accés no autoritzat");
 
-    }
-
     @PostConstruct
     public void initRealmname() {
         setRealmName("animu.itb");
+    }
+
+    }*/
+
+    @Override
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
+        response.setContentType("application/json");
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        PrintWriter writer = response.getWriter();
+        writer.println("Accés no autoritzat al entry point");
     }
 }
